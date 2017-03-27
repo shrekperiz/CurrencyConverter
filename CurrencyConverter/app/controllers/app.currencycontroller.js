@@ -7,8 +7,9 @@ var app = angular.module("app");
 
 app.controller("CurrencyController", function($rootScope,$scope, ConverterService, CONSTANTS, $filter, $location) {
 	// model variable initialization
-	$scope.convCurrency = 0.0;
-	$scope.exchangeRate = 0.0;
+	$scope.baseCurrency = 0.00;
+	$scope.convCurrency = 0.00;
+	$scope.exchangeRate = 0.00;
 	$scope.showExchangeRate = false;
 	$rootScope.serviceError = false;
 	/**

@@ -13,18 +13,19 @@ app.directive('validNumber', function() {
         return; 
       }
 
-      ngModelCtrl.$parsers.push(function(val) {
+      var validator = function(val) {
         if (angular.isUndefined(val)) {
             var val = '';
         }
-        var clean = val.replace( /[^0-9\.]+/g, '');
-        if (val !== clean) {
-          ngModelCtrl.$setViewValue(clean);
-          ngModelCtrl.$render();
-        }
-        return clean;
-      });
+        var regexp = /^[0-9]+(\.[0-9]{1,2})?$/;
+        
+        ngModelCtrl.$setValidity('validNumber', regexp.test(val));
+        return val;
+      };
 
+      ngModelCtrl.$parsers.unshift(validator);
+      ngModelCtrl.$formatters.unshift(validator);
+      
       element.bind('keypress', function(event) {
         if(event.keyCode === 32) {
           event.preventDefault();

@@ -33,15 +33,17 @@
 			<div class="row">
 				<div class="col-md-6">
 					<form name="frmCurrency" novalidate>
-						<input type="text" class="form-control" name="baseCurrency" ng-model="baseCurrency" ng-change="calConvertedAmount()" valid-number required autofocus>	
-						<span class="red-alert" ng-show="frmCurrency.baseCurrency.$touched && frmCurrency.baseCurrency.$invalid">
-							Amount is required.
-						</span>
+						<input type="number" class="form-control" name="baseCurrency" ng-model="baseCurrency" ng-change="calConvertedAmount()" valid-number autofocus placeholder="Enter a valid number">
 					</form>
 				</div>
 				<div class="col-md-6">
 					<select name="baseCurrency" class="form-control" ng-model="selBaseCurrency" ng-options="currency as currency.code for currency in currencies" ng-change="getExchangeRate()" >
 					</select>
+				</div>
+			</div>
+			<div class="row" ng-show="frmCurrency.baseCurrency.$touched && frmCurrency.baseCurrency.$error.validNumber">
+				<div class="col-md-12">
+					<span class="red-alert">Enter an amount with two decimal places. </span>
 				</div>
 			</div>
 			<div class="row">
