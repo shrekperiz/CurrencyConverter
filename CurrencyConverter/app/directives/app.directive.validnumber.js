@@ -17,9 +17,27 @@ app.directive('validNumber', function() {
         if (angular.isUndefined(val)) {
             var val = '';
         }
-        var regexp = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+        // Not restricted from entering the decimal point more than once
+        var findsDot = new RegExp(/\./g); 
+        var containsDot = val.match(findsDot);
         
-        ngModelCtrl.$setValidity('validNumber', regexp.test(val));
+        if (containsDot != null && ([46, 110, 190].indexOf(event.which) > -1)) {  
+            event.preventDefault();  
+            return false;  
+        }
+
+        // check if input contains more than two decimal places
+        var regexp = /^[0-9]+(\.[0-9]{1,2})?$/;
+        var valid = regexp.test(val);
+        if (!valid) {
+          var clean = val.substring(0, (val.indexOf('.') + 3));
+          if (val !== clean) {
+            ngModelCtrl.$setViewValue(clean);
+            ngModelCtrl.$render();
+          }
+        }
+        
         return val;
       };
 

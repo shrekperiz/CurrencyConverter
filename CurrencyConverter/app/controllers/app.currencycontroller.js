@@ -7,7 +7,6 @@ var app = angular.module("app");
 
 app.controller("CurrencyController", function($rootScope,$scope, ConverterService, CONSTANTS, $filter, $location) {
 	// model variable initialization
-	$scope.baseCurrency = 0.00;
 	$scope.convCurrency = 0.00;
 	$scope.exchangeRate = 0.00;
 	$scope.showExchangeRate = false;
@@ -60,7 +59,12 @@ app.controller("CurrencyController", function($rootScope,$scope, ConverterServic
 	**/
 	$scope.calConvertedAmount = function () {
 		if ($scope.baseCurrency >= 0) {
-			$scope.convCurrency = $scope.baseCurrency * $scope.exchangeRate;
+			// check if input contains more than two decimal places
+			var regexp = /^[0-9]+(\.[0-9]{1,2})?$/;
+	        var valid = regexp.test($scope.baseCurrency);
+	        if (valid) {
+	        	$scope.convCurrency = $scope.baseCurrency * $scope.exchangeRate;
+	        }
 		} else {
 			$scope.convCurrency = 0.00;
 		}
