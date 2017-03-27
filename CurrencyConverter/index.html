@@ -33,7 +33,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<form name="frmCurrency" novalidate>
-						<input type="number" class="form-control" name="baseCurrency" ng-model="baseCurrency" ng-change="calConvertedAmount()" valid-number autofocus placeholder="0.00" >
+						<input type="text" class="form-control" name="baseCurrency" ng-model="baseCurrency" valid-number autofocus placeholder="0.00" >
 					</form>
 				</div>
 				<div class="col-md-6">
@@ -63,8 +63,6 @@
 					<span class="disclaimer">{{ 1 + ' ' + selBaseCurrency.code + ' = ' + exchangeRate + ' ' + selConvCurrency.code}}</span>
 
 					<p class="h6">Fixer Data API offers live rates for every currency in the world. With 160+ global sources, the Rate Blender monitors the quality of incoming data for the highest accuracy. </p>
-
-					<p class="h6">The exchange rate shown is an indicative rate and should be used as a guide only. Exchange rates displayed are based on Fixer API. As exchange rates fluctuate by the second and we calculate the amount by live rate.</p>
 				</div>
 			</div>
 	</div>

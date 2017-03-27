@@ -59,17 +59,12 @@ app.controller("CurrencyController", function($rootScope,$scope, ConverterServic
 	**/
 	$scope.calConvertedAmount = function () {
 		if ($scope.baseCurrency >= 0) {
-			// check if input contains more than two decimal places
-			var regexp = /^[0-9]+(\.[0-9]{1,2})?$/;
-	        var valid = regexp.test($scope.baseCurrency);
-	        if (valid) {
-	        	$scope.convCurrency = $scope.baseCurrency * $scope.exchangeRate;
-	        }
+	        $scope.convCurrency = $scope.baseCurrency * $scope.exchangeRate;	        	
 		} else {
 			$scope.convCurrency = 0.00;
 		}
-
-		$scope.convCurrency = $scope.convCurrency.toFixed(3);
+		
+		$scope.convCurrency = parseFloat($scope.convCurrency).toFixed(2);
 	}
 	
 
