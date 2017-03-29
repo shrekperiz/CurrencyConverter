@@ -1,28 +1,5 @@
- html, body, .container-table {
+html, body {
     height: 100%;
-}
-.container-table {
-    display: table;
-    width: 340px;
-    height: auto;
-    border: 1px solid;
-    padding-bottom: 10px;
-    background-color: #FC	FCFC;
-}
-
-select {
-	width: 80px;
-	height: 26px;
-}
-
-input {
-	width: 160px;
-	height: 26px;
-}
-
-label, a {
-	font-weight: bold;
-	font-size: 12px;
 }
 
 a {
@@ -33,21 +10,32 @@ a:hover {
 	cursor: pointer;
 }
 
+.container-table {
+    display: table;
+    width: 30%;
+    height: auto;
+    border: 1px solid;
+    padding-bottom: 0.625em;
+    background-color: #FCFCFC;
+}
+
+.font-style, .label-style, .disclaimer {
+	font-size: 0.875em;
+}
+
+.label-style {
+	font-weight: bold;
+}
+
 .disclaimer {
-	font-size: 14px;
-	font-weight: normal;
 	color: blue;
 }
 
-.disclaimer > span {
-	padding-right: 5px;
-}
-
 .top-buffer {
-	margin-top: 10px;
+	margin-top: 0.625em;
 }
 
 .red-alert {
 	color: red;
-	font-size: 11px;
+	font-size: 0.6875em;
 }
