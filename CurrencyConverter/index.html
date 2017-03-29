@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="app/directives/app.directive.validnumber.js"></script>
 	</head>
 	<body ng-app="app">
-		<div class="container container-table" ng-controller="CurrencyController">
+		<div class="container container-table centered" ng-controller="CurrencyController">
 			<div class="row">
 				<div class="col-md-12">
 					<h4>Currency converter</h4>
@@ -33,7 +33,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<form name="frmCurrency" novalidate>
-						<input type="text" class="form-control" name="baseCurrency" ng-model="baseCurrency" valid-number autofocus placeholder="0.00" >
+						<input type="text" class="form-control" name="baseCurrency" id="baseCurrency" ng-model="baseCurrency" valid-number autofocus placeholder="0.00">
 					</form>
 				</div>
 				<div class="col-md-6">
@@ -60,12 +60,11 @@
 			</div>
 			<div class="row" ng-show="showExchangeRate" >
 				<div class="col-md-12 text-left">
-					<span class="disclaimer">{{ 1 + ' ' + selBaseCurrency.code + ' = ' + exchangeRate + ' ' + selConvCurrency.code}}</span>
+					<span>{{ 1 + ' ' + selBaseCurrency.code + ' = ' + exchangeRate + ' ' + selConvCurrency.code}}</span>
 
 					<p class="font-style">Fixer Data API offers live rates for every currency in the world. With 160+ global sources, the Rate Blender monitors the quality of incoming data for the highest accuracy. </p>
 				</div>
 			</div>
-	</div>
-		
+		</div>
 	</body>
 </html>

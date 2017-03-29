@@ -18,15 +18,6 @@ app.directive('validNumber', function() {
             var val = '';
         }
 
-        // Not restricted from entering the decimal point more than once
-        var findsDot = new RegExp(/\./g); 
-        var containsDot = val.match(findsDot);
-        
-        if (containsDot != null && ([46, 110, 190].indexOf(event.which) > -1)) {  
-            event.preventDefault();  
-            return false;
-        }
-
         var clean = val.replace( /[^0-9\.]+/g, '');
         if (val !== clean) {
             ngModelCtrl.$setViewValue(clean);
@@ -46,14 +37,30 @@ app.directive('validNumber', function() {
         return clean;
       };
 
-      ngModelCtrl.$parsers.unshift(validator);
-      ngModelCtrl.$formatters.unshift(validator);
-      
-      element.bind('keypress', function(event) {
-        if(event.keyCode === 32) {
-          event.preventDefault();
+      element.on('keydown', function (event) {
+        if (event.which == 64 || event.which == 16) {  
+            // numbers  
+            return false;  
+        } if ([8, 13, 27, 37, 38, 39, 40, 110].indexOf(event.which) > -1) {  
+            // backspace, enter, escape, arrows  
+            return true;  
+        } else if (event.which >= 48 && event.which <= 57) {  
+            // numbers  
+            return true;  
+        } else if (event.which >= 96 && event.which <= 105) {  
+            // numpad number  
+            return true;  
+        } else if ([46, 110, 190].indexOf(event.which) > -1) {  
+            // dot and numpad dot  
+            return true;  
+        } else {  
+            event.preventDefault();  
+            return false;  
         }
       });
+
+      ngModelCtrl.$parsers.unshift(validator);
+      ngModelCtrl.$formatters.unshift(validator);
 
       /**
       This function will invoke when user input the amount, calculate the converted amount by using baseAmount * exchangeRate. 
