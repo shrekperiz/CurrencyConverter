@@ -23,8 +23,6 @@ input:focus:-moz-placeholder{
 }
 
 .container-table {
-    display: table;
-    vertical-align: middle;
     width: 30%;
     height: auto;
     border: 1px solid;
@@ -33,7 +31,8 @@ input:focus:-moz-placeholder{
 }
 
 .centered {
-  position: fixed;
+  margin: 0;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
