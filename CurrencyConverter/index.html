@@ -8,12 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/app.css">
 		<script type="text/javascript" src="app/js/angular.min.js"></script>
-		<!-- loading application js files -->
-		<script type="text/javascript" src="app/app.module.js"></script>
-		<script type="text/javascript" src="app/constants.js"></script>
-		<script type="text/javascript" src="app/controllers/app.currencycontroller.js"></script>
-		<script type="text/javascript" src="app/services/app.converterservice.js"></script>
-		<script type="text/javascript" src="app/directives/app.directive.validnumber.js"></script>
 	</head>
 	<body ng-app="app">
 		<div class="container container-table centered" ng-controller="CurrencyController">
@@ -62,9 +56,16 @@
 				<div class="col-md-12 text-left">
 					<span>{{ 1 + ' ' + selBaseCurrency.code + ' = ' + exchangeRate + ' ' + selConvCurrency.code}}</span>
 
-					<p class="font-style">Fixer Data API offers live rates for every currency in the world. With 160+ global sources, the Rate Blender monitors the quality of incoming data for the highest accuracy. </p>
+					<p class="font-style">The developer is not responsible for the accuracy of the exchange rate data. The rates are not current and are based on yesterday's data. </p>
 				</div>
 			</div>
 		</div>
+
+		<!-- loading application js files -->
+		<script type="text/javascript" src="app/app.module.js"></script>
+		<script type="text/javascript" src="app/constants.js"></script>
+		<script type="text/javascript" src="app/controllers/app.currencycontroller.js"></script>
+		<script type="text/javascript" src="app/services/app.converterservice.js"></script>
+		<script type="text/javascript" src="app/directives/app.directive.validnumber.js"></script>
 	</body>
 </html>
