@@ -29,6 +29,20 @@ app.controller("CurrencyController", function($rootScope,$scope, ConverterServic
 	}
 
 	/**
+	This function will invoke when user input the amount, calculate the converted amount by using baseAmount * exchangeRate. 
+	Bind the scope variable in text field, It will immediately reflected in UI once value gets updated.  
+	**/
+	calcConvertedAmount = function () {
+		if ($scope.baseCurrency >= 0) {
+	        $scope.convCurrency = $scope.baseCurrency * $scope.exchangeRate;	        	
+		} else {
+			$scope.convCurrency = 0.00;
+		}
+		
+		$scope.convCurrency = parseFloat($scope.convCurrency).toFixed(2);
+	}
+
+	/**
 	This function will invoke whenever user change the value in currency dropdown to fetch the exchange rate by passing base currency and output currency to the fixer api. 
 	Parse the latest api fixer rate and update into scope variable which can be used to calculate the converted amount
 	**/
@@ -39,7 +53,7 @@ app.controller("CurrencyController", function($rootScope,$scope, ConverterServic
 					// update the latest exchange rate
 					$scope.exchangeRate = result.rates[$scope.selConvCurrency.code];
 					// call this function to calculate the converted amount
-					$scope.calConvertedAmount();
+					calcConvertedAmount();
 				} else {
 					// shows error message
 					$rootScope.serviceError = true;
@@ -49,24 +63,9 @@ app.controller("CurrencyController", function($rootScope,$scope, ConverterServic
 			// set the default exchange rate when user choose the base and converted currency as same
 			$scope.exchangeRate = 1;
 			// call this function to calculate the converted amount
-			$scope.calConvertedAmount();
+			calcConvertedAmount();
 		}
 	}
-
-	/**
-	This function will invoke when user input the amount, calculate the converted amount by using baseAmount * exchangeRate. 
-	Bind the scope variable in text field, It will immediately reflected in UI once value gets updated.  
-	**/
-	$scope.calConvertedAmount = function () {
-		if ($scope.baseCurrency >= 0) {
-	        $scope.convCurrency = $scope.baseCurrency * $scope.exchangeRate;	        	
-		} else {
-			$scope.convCurrency = 0.00;
-		}
-		
-		$scope.convCurrency = parseFloat($scope.convCurrency).toFixed(2);
-	}
-	
 
 	// call getCurrencies() to populate the currency list in dropdown
 	getCurrencies();

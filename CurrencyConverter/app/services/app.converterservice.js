@@ -9,21 +9,22 @@ app.factory("ConverterService", function($rootScope,$http, $log, CONSTANTS) {
 	var serviceUrl = "";	
 
 	convService.getExchangeRates = function (base, symbols, callBackFunc) {
-		// sample url formation
-		//http://api.fixer.io/latest?base=USD&symbols=CAD,EUR
+		// calling fixer api service to get the latest exchange rate
 		serviceUrl = CONSTANTS.FIXER_API_URL + "base="+base+"&symbols="+symbols;
 		$http.get(serviceUrl)
 			.then(function(response) {
 				if (response && response.data) {
+					$rootScope.serviceError = false;
 					callBackFunc(response.data);	
 				}
 				else {
+					$rootScope.serviceError = true;
 					$log.error("Fixer api response not found.");
 				}	
 			},
 			function(error) {
-				$log.error("Fier api request failed : " + error);	
 				$rootScope.serviceError = true;
+				$log.error("Fier api request failed : " + error);				
 			});
 	}
 
