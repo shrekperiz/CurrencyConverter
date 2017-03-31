@@ -41,7 +41,7 @@ app.directive('validNumber', function() {
         if (event.which == 64 || event.which == 16) {  
             // numbers  
             return false;  
-        } if ([8, 13, 27, 37, 38, 39, 40].indexOf(event.which) > -1) {  
+        } if ([8, 13, 27, 37, 38, 39, 40, 9].indexOf(event.which) > -1) {  
             // backspace, enter, escape, arrows  
             return true;  
         } else if (event.which >= 48 && event.which <= 57) {  
