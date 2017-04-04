@@ -58,9 +58,9 @@
 			<div class="row top-buffer">
 				<span class="col-md-12 text-right"><a class="label-style" ng-click="showExchangeRate = !showExchangeRate">Disclaimer</a></span>
 			</div>
-			<div class="row" ng-show="showExchangeRate" >
+			<div class="row" ng-show="showExchangeRate">
 				<div class="col-md-12 text-left">
-					<span>{{ 1 + ' ' + selBaseCurrency.code + ' = ' + exchangeRate + ' ' + selConvCurrency.code}}</span>
+					<span ng-bind="1 + ' ' + selBaseCurrency.code + ' = ' + exchangeRate + ' ' + selConvCurrency.code"></span>
 
 					<p class="font-style">Fixer Data API offers live rates for every currency in the world. With 160+ global sources, the Rate Blender monitors the quality of incoming data for the highest accuracy. </p>
 				</div>
