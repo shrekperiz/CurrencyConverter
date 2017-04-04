@@ -37,11 +37,11 @@ app.directive('validNumber', function() {
         return clean;
       };
 
-      element.on('keydown', function (event) {
+       element.on('keydown', function (event) {
         if (event.which == 64 || event.which == 16) {  
             // numbers  
             return false;  
-        } if ([8, 13, 27, 37, 38, 39, 40, 110].indexOf(event.which) > -1) {  
+        } if ([8, 13, 27, 37, 38, 39, 40, 9].indexOf(event.which) > -1) {  
             // backspace, enter, escape, arrows  
             return true;  
         } else if (event.which >= 48 && event.which <= 57) {  
@@ -51,8 +51,15 @@ app.directive('validNumber', function() {
             // numpad number  
             return true;  
         } else if ([46, 110, 190].indexOf(event.which) > -1) {  
-            // dot and numpad dot  
-            return true;  
+            // dot and numpad dot
+            // restrict to enter more than one dot
+            var curValue = ngModelCtrl.$viewValue; 
+            if ( curValue && curValue.indexOf('.') > -1) {
+              event.preventDefault();
+              return false;
+            } else {
+              return true;
+            }
         } else {  
             event.preventDefault();  
             return false;  

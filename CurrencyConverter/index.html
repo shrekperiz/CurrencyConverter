@@ -7,13 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/app.css">
-		<script type="text/javascript" src="app/js/angular.min.js"></script>
-		<!-- loading application js files -->
-		<script type="text/javascript" src="app/app.module.js"></script>
-		<script type="text/javascript" src="app/constants.js"></script>
-		<script type="text/javascript" src="app/controllers/app.currencycontroller.js"></script>
-		<script type="text/javascript" src="app/services/app.converterservice.js"></script>
-		<script type="text/javascript" src="app/directives/app.directive.validnumber.js"></script>
 	</head>
 	<body ng-app="app">
 		<div class="container container-table centered" ng-controller="CurrencyController">
@@ -33,11 +26,11 @@
 			<div class="row">
 				<div class="col-md-6">
 					<form name="frmCurrency" novalidate>
-						<input type="text" class="form-control" name="baseCurrency" id="baseCurrency" ng-model="baseCurrency" valid-number autofocus placeholder="0.00">
+						<input type="text" class="form-control" name="baseCurrency" id="baseCurrency" ng-model="baseCurrency" valid-number autofocus placeholder="0.00" tabindex="1">
 					</form>
 				</div>
 				<div class="col-md-6">
-					<select name="baseCurrency" class="form-control" ng-model="selBaseCurrency" ng-options="currency as currency.code for currency in currencies" ng-change="getExchangeRate()"  >
+					<select name="baseCurrency" class="form-control" ng-model="selBaseCurrency" ng-options="currency as currency.code for currency in currencies" ng-change="getExchangeRate()" tabindex="2" >
 					</select>
 				</div>
 			</div>			
@@ -48,23 +41,30 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<input type="text" class="form-control" name="convCurrency" ng-model="convCurrency" disabled>
+					<input type="text" class="form-control" name="convCurrency" ng-model="convCurrency" disabled tabindex="3">
 				</div>
 				<div class="col-md-6">
-					<select name="convCurrency" class="form-control" ng-model="selConvCurrency" ng-options="currency as currency.code for currency in currencies" ng-change="getExchangeRate()" >
+					<select name="convCurrency" class="form-control" ng-model="selConvCurrency" ng-options="currency as currency.code for currency in currencies" ng-change="getExchangeRate()" tabindex="4">
 					</select>
 				</div>
 			</div>
 			<div class="row top-buffer">
-				<span class="col-md-12 text-right"><a class="label-style" ng-click="showExchangeRate = !showExchangeRate">Disclaimer</a></span>
+				<span class="col-md-12 text-right"><a class="label-style" href="" ng-click="showExchangeRate = !showExchangeRate" role="link" tabindex="5">Disclaimer</a></span>
 			</div>
 			<div class="row" ng-show="showExchangeRate">
 				<div class="col-md-12 text-left">
 					<span ng-bind="1 + ' ' + selBaseCurrency.code + ' = ' + exchangeRate + ' ' + selConvCurrency.code"></span>
 
-					<p class="font-style">Fixer Data API offers live rates for every currency in the world. With 160+ global sources, the Rate Blender monitors the quality of incoming data for the highest accuracy. </p>
+					<p class="font-style">The developer is not responsible for the accuracy of the exchange rate data. The rates are not current and are based on yesterday's data. </p>
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="app/js/angular.min.js"></script>
+		<!-- loading application js files -->
+		<script type="text/javascript" src="app/app.module.js"></script>
+		<script type="text/javascript" src="app/constants.js"></script>
+		<script type="text/javascript" src="app/controllers/app.currencycontroller.js"></script>
+		<script type="text/javascript" src="app/services/app.converterservice.js"></script>
+		<script type="text/javascript" src="app/directives/app.directive.validnumber.js"></script>
 	</body>
 </html>

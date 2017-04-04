@@ -6,17 +6,6 @@
 **/
 var app = angular.module("app", []);
 
-/*app.config(function($routeProvider) {
-	$routeProvider
-	// route for the home page
-	.when("/", {
-		templateUrl : "partials/converter-view.html"
-	})	
-	.when("/error", {
-		templateUrl : "partials/error-page.html"
-	});
-});*/
-
 // Application error handling
 app.factory('$exceptionHandler', function($log) {
 	return function (exception, cause) {
